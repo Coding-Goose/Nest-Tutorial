@@ -1,8 +1,21 @@
-export interface Movie {
+import { Column, Entity, PrimaryGeneratedColumn } from 'typeorm';
+
+@Entity()
+export class Movie {
+
+  @PrimaryGeneratedColumn()
   id: number;
+
+  @Column()
   name: string;
+
+  @Column()
   director: string;
+
+  @Column()
   length: number;
+
+  @Column()
   genre: Genre;
 }
 
