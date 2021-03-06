@@ -11,5 +11,5 @@ export enum Genre {
   Comedy,
   Drama,
   Horror,
-  Thriller,
+  Thriller
 }

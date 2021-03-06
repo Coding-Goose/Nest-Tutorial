@@ -3,6 +3,7 @@ import { Movie } from './movie';
 
 @Injectable()
 export class MoviesService {
+
   private movies: Movie[] = [];
 
   createMovie(movie: Movie): number {
@@ -15,11 +16,11 @@ export class MoviesService {
   }
 
   readMovie(id: number): Movie {
-    return this.movies.find((movie) => movie.id == id);
+    return this.movies.find(movie => movie.id == id);
   }
 
-  updateMovie(newMovie: Movie) {
-    const index = this.movies.findIndex((movie) => movie.id == newMovie.id);
+  updateMovie(newMovie: Movie): Movie {
+    const index = this.movies.findIndex(movie => movie.id == newMovie.id);
     if (index > -1) {
       this.movies[index] = newMovie;
       return this.movies[index];
@@ -27,6 +28,6 @@ export class MoviesService {
   }
 
   deleteMovie(id: number) {
-    this.movies = this.movies.filter((movie) => movie.id != id);
+    this.movies = this.movies.filter(movie => movie.id != id);
   }
 }

@@ -4,7 +4,9 @@ import { MoviesService } from './movies.service';
 
 @Controller('movies')
 export class MoviesController {
-  constructor(private movieService: MoviesService) {}
+
+  constructor(private movieService: MoviesService) {
+  }
 
   @Post()
   createMovie(@Body() movie: Movie): number {
@@ -12,17 +14,17 @@ export class MoviesController {
   }
 
   @Get()
-  readMovies() {
+  readMovies(): Movie[] {
     return this.movieService.readMovies();
   }
 
   @Get(':id')
-  readMovie(@Param('id') id: number) {
+  readMovie(@Param('id') id: number): Movie {
     return this.movieService.readMovie(id);
   }
 
-  @Put(':id')
-  updateMovie(@Param('id') id: number, @Body() newMovie: Movie) {
+  @Put()
+  updateMovie(@Body() newMovie: Movie): Movie {
     return this.movieService.updateMovie(newMovie);
   }
 
