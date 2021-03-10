@@ -4,6 +4,8 @@ import { AppController } from './app.controller';
 import { AppService } from './app.service';
 import { MoviesModule } from './movies/movies.module';
 import { Movie } from './movies/movie';
+import { UserModule } from './user/user.module';
+import { User } from './user/user';
 
 @Module({
   imports: [
@@ -15,9 +17,10 @@ import { Movie } from './movies/movie';
       username: 'root',
       password: 'password',
       database: 'test',
-      entities: [Movie],
+      entities: [Movie, User],
       synchronize: true,
     }),
+    UserModule,
   ],
   controllers: [AppController],
   providers: [AppService],

@@ -12,7 +12,7 @@ export class Movie {
   @Column()
   director: string;
 
-  @Column()
+  @Column({type: 'double'})
   length: number;
 
   @Column()

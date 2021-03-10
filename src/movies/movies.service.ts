@@ -1,32 +1,31 @@
 import { Injectable } from '@nestjs/common';
 import { Movie } from './movie';
+import { InjectRepository } from '@nestjs/typeorm';
+import { DeleteResult, Repository, UpdateResult } from 'typeorm';
 
 @Injectable()
 export class MoviesService {
-  private movies: Movie[] = [];
 
-  createMovie(movie: Movie): number {
-    this.movies.push(movie);
-    return movie.id;
+  constructor(@InjectRepository(Movie) private movieRepo: Repository<Movie>) {
+      }
+
+  createMovie(movie: Movie): Promise<Movie> {
+    return this.movieRepo.save(movie);
   }
 
-  readMovies(): Movie[] {
-    return this.movies;
+  readMovies(): Promise<Movie[]> {
+    return this.movieRepo.find();
   }
 
-  readMovie(id: number): Movie {
-    return this.movies.find((movie) => movie.id == id);
+  readMovie(id: number): Promise<Movie> {
+    return this.movieRepo.findOne(id);
   }
 
-  updateMovie(newMovie: Movie) {
-    const index = this.movies.findIndex((movie) => movie.id == newMovie.id);
-    if (index > -1) {
-      this.movies[index] = newMovie;
-      return this.movies[index];
-    }
+  updateMovie(id: number, newMovie: Movie): Promise<UpdateResult> {
+    return this.movieRepo.update(id, newMovie);
   }
 
-  deleteMovie(id: number) {
-    this.movies = this.movies.filter((movie) => movie.id != id);
+  deleteMovie(id: number): Promise<DeleteResult> {
+    return this.movieRepo.delete(id);
   }
 }
