@@ -4,8 +4,6 @@ import { AppController } from './app.controller';
 import { AppService } from './app.service';
 import { MoviesModule } from './movies/movies.module';
 import { Movie } from './movies/movie';
-import { UserModule } from './user/user.module';
-import { User } from './user/user';
 
 @Module({
   imports: [
@@ -16,13 +14,13 @@ import { User } from './user/user';
       port: 3306,
       username: 'root',
       password: 'password',
-      database: 'test',
-      entities: [Movie, User],
+      database: 'nestdb',
+      entities: [Movie],
       synchronize: true,
     }),
-    UserModule,
   ],
   controllers: [AppController],
   providers: [AppService],
 })
-export class AppModule {}
+export class AppModule {
+}
