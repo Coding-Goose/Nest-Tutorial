@@ -16,7 +16,7 @@ import { User } from './user/user';
       port: 3306,
       username: 'root',
       password: 'password',
-      database: 'test',
+      database: 'nestdb',
       entities: [Movie, User],
       synchronize: true,
     }),

@@ -1,7 +1,8 @@
-import { Body, Controller, Delete, Get, Param, Post, Put } from '@nestjs/common';
+import { Body, Controller, Delete, Get, Param, ParseIntPipe, Post, Put } from '@nestjs/common';
 import { Movie } from './movie';
 import { MoviesService } from './movies.service';
 import { DeleteResult, UpdateResult } from 'typeorm';
+import { ValidateMoviePipe } from './validate-movie.pipe';
 
 @Controller('movies')
 export class MoviesController {
@@ -18,7 +19,7 @@ export class MoviesController {
   }
 
   @Get(':id')
-  readMovie(@Param('id') id: number): Promise<Movie> {
+  readMovie(@Param('id', ParseIntPipe) id: number): Promise<Movie> {
     return this.movieService.readMovie(id);
   }
 
