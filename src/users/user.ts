@@ -3,6 +3,7 @@ import { Movie } from '../movies/movie';
 
 @Entity()
 export class User {
+
   @PrimaryGeneratedColumn()
   id: number;
 

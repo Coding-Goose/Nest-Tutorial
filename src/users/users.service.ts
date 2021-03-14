@@ -1,12 +1,12 @@
 import { Injectable } from '@nestjs/common';
 import { InjectRepository } from '@nestjs/typeorm';
 import { User } from './user';
-import { DeleteResult, Repository, UpdateResult } from 'typeorm';
+import { Repository } from 'typeorm';
 import { MoviesService } from '../movies/movies.service';
 import { Movie } from '../movies/movie';
 
 @Injectable()
-export class UserService {
+export class UsersService {
 
   constructor(@InjectRepository(User) private userRepo: Repository<User>, private movieService: MoviesService) {
   }
@@ -19,8 +19,8 @@ export class UserService {
     return this.userRepo.find();
   }
 
-  async addMovieToWatchList(userId: number, movieId: number): Promise<User> {
-    const movie = await this.movieService.readMovie(movieId);
+  async addMovieToWatchList(userId: number, movieId: number) {
+    const movie: Movie = await this.movieService.readMovie(movieId);
     const user: User = await this.userRepo.findOne(userId, {relations: ["watchList"]});
     if (!user.watchList) {
       user.watchList = [];
@@ -31,8 +31,8 @@ export class UserService {
     return this.userRepo.save(user);
   }
 
-  async getWatchList(id: number): Promise<Movie[]> {
+  async getWatchlist(id: number): Promise<Movie[]> {
     const user: User = await this.userRepo.findOne(id, {relations: ["watchList"]});
-    return user.watchList
+    return user.watchList;
   }
 }
