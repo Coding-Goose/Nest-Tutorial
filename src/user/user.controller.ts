@@ -10,12 +10,12 @@ export class UserController {
   }
 
   @Post()
-  createMovie(@Body() user: User): Promise<User> {
+  createUser(@Body() user: User): Promise<User> {
     return this.userService.createUser(user);
   }
 
   @Get()
-  readMovies(): Promise<User[]> {
+  readUsers(): Promise<User[]> {
     return this.userService.readUsers();
   }
 
