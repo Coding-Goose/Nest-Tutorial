@@ -6,9 +6,12 @@ import { MoviesModule } from './movies/movies.module';
 import { Movie } from './movies/movie';
 import { UserModule } from './user/user.module';
 import { User } from './user/user';
+import { CommentsModule } from './comments/comments.module';
+import { MongooseModule } from '@nestjs/mongoose';
 
 @Module({
   imports: [
+    MongooseModule.forRoot('mongodb://localhost:27017/comments'),
     MoviesModule,
     TypeOrmModule.forRoot({
       type: 'mysql',
@@ -21,6 +24,7 @@ import { User } from './user/user';
       synchronize: true,
     }),
     UserModule,
+    CommentsModule,
   ],
   controllers: [AppController],
   providers: [AppService],

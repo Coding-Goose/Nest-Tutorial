@@ -19,7 +19,8 @@ export class MoviesController {
   }
 
   @Get(':id')
-  readMovie(@Param('id', ParseIntPipe) id: number): Promise<Movie> {
+  readMovie(@Param('id',
+    ParseIntPipe) id: number): Promise<Movie> {
     return this.movieService.readMovie(id);
   }
 
