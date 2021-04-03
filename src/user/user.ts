@@ -9,6 +9,9 @@ export class User {
   @Column()
   name: string;
 
+  @Column()
+  password: string;
+
   @ManyToMany(() => Movie, {
     cascade: true
   })

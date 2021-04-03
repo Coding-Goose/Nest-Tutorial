@@ -15,6 +15,14 @@ export class UserService {
     return this.userRepo.save(user);
   }
 
+  getUserByUsername(name: string): Promise<User> {
+    return this.userRepo.findOne({
+      where: {
+        name: name
+      }
+    });
+  }
+
   readUsers(): Promise<User[]> {
     return this.userRepo.find();
   }

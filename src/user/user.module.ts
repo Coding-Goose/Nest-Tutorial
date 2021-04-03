@@ -9,6 +9,7 @@ import { MoviesModule } from '../movies/movies.module';
   imports: [TypeOrmModule.forFeature([User]), MoviesModule],
   providers: [UserService],
   controllers: [UserController],
+  exports: [UserService]
 })
 export class UserModule {
 }
